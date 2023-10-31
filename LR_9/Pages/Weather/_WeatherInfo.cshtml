@@ -1,17 +1,29 @@
-﻿@model LR_9.Pages.Weather.IndexModel;
+﻿@model LR_9.Pages.Weather.WeatherInfoModel;
 @using LR_9.Models;
 
 @{
     var temperatureUnit = Model.Units == "metric" ? 'C' : 'F';
 }
 <div>
-    <h2>@(Model.WeatherCast.PlaceName)</h2>
-    <ul>
-        <li>Temperature: @Model.WeatherCast.Main.Temp @temperatureUnit</li>
-        <li>Feels like: @Model.WeatherCast.Main.FeelsLike @temperatureUnit</li>
-        <li>Minimum temperature: @Model.WeatherCast.Main.TempMin @temperatureUnit</li>
-        <li>Maximum temperature: @Model.WeatherCast.Main.TempMax @temperatureUnit</li>
-        <li>Pressure: @Model.WeatherCast.Main.Pressure Pa</li>
-        <li>Humidity: @Model.WeatherCast.Main.Humidity %</li>
-    </ul>
+    @if (Model.ApiErrorMessage != null)
+    {
+        <h2>@Model.ApiErrorMessage</h2>
+    }
+    else if (Model.WeatherCast == null)
+    {
+        <h2>Unknown Error</h2>
+    }
+    else
+    {
+        <h2>@(Model.WeatherCast.PlaceName)</h2>
+        <ul>
+            <li>Temperature: @Model.WeatherCast.Main.Temp @temperatureUnit</li>
+            <li>Feels like: @Model.WeatherCast.Main.FeelsLike @temperatureUnit</li>
+            <li>Minimum temperature: @Model.WeatherCast.Main.TempMin @temperatureUnit</li>
+            <li>Maximum temperature: @Model.WeatherCast.Main.TempMax @temperatureUnit</li>
+            <li>Pressure: @Model.WeatherCast.Main.Pressure Pa</li>
+            <li>Humidity: @Model.WeatherCast.Main.Humidity %</li>
+        </ul>
+    }
+
 </div>

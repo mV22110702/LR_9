@@ -1,5 +1,13 @@
 ﻿@page
 @model LR_9.Pages.Weather.IndexModel
-@using LR_9.Models
-<h1>Weather Info</h1>
-<partial name="_WeatherInfo" />
+<h2>Input your city</h2>
+<div>
+    <form method="post">
+    <label asp-for="InputCityName">City:</label>
+    <input asp-for="InputCityName"/>
+    <br/>
+    <span asp-validation-for="InputCityName"></span>
+    <br/>
+    <input type="submit"/>
+    </form>
+</div>
